@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <title>Tailwind css carousel autoplay slider with arrow and indicators.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet" />
+    <!-- Swiper's CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <style>
+        body {
+            margin: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img class="object-cover w-full h-96" src="https://source.unsplash.com/user/erondu" alt="apple watch photo" />
+            </div>
+            <div class="swiper-slide">
+                <img class="object-cover w-full h-96" src="https://source.unsplash.com/collection/190727" alt="apple watch photo" />
+            </div>
+            <div class="swiper-slide">
+                <img class="object-cover w-full h-96" src="https://source.unsplash.com/collection/190728" alt="apple watch photo" />
+            </div>
+            <div class="swiper-slide">
+                <img class="object-cover w-full h-96" src="https://source.unsplash.com/random" alt="apple watch photo" />
+            </div>
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        var swiper = new Swiper('.mySwiper', {
+            autoplay: false,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                320: {
+                    slidesPerView: 1,
+                },
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30
+                },
+            }
+        });
+
+        swiper.on('click', function(e) {
+            if (e.isEnd) {
+                console.log('is last slide');
+                swiper.params.slidesPerView = 1;
+                swiper.update();
+                swiper.slideTo(0);
+            }
+        });
+    </script>
+</body>
+
+</html>
